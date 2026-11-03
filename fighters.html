@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1012" />
+  <title>Fighters · Stick Fighter Z</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rajdhani:wght@500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="stage">
+    <!-- ============ FIGHTERS SCREEN ============ -->
+    <div class="overlay screen open" id="fightersScreen">
+      <header class="screen-head">
+        <button class="back" data-back aria-label="Back">
+          <svg viewBox="0 0 24 24"><path d="M15 4 L7 12 L15 20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <h2>FIGHTERS</h2>
+        <div class="screen-sub" id="fsCount"></div>
+      </header>
+      <div class="bg-name" id="fsBgName"></div>
+
+      <section class="fs-info">
+        <div class="fs-style" id="fsStyle"></div>
+        <div class="fs-name" id="fsName"></div>
+        <div class="fs-title" id="fsTitle"></div>
+        <p class="fs-desc" id="fsDesc"></p>
+        <div class="stats" id="fsStats"></div>
+        <div class="fs-special">
+          <div class="fs-label">SPECIAL MOVE</div>
+          <b id="fsSpecial"></b>
+          <p id="fsSpecialDesc"></p>
+        </div>
+      </section>
+
+      <div class="showcase" id="fsShowcase">
+        <div class="spot"></div>
+        <div class="showcase-hero" id="fsHero"></div>
+        <div class="lock-badge" id="fsLock">
+          <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor" /><path d="M8 11 V8 a4 4 0 0 1 8 0 V11" stroke="currentColor" stroke-width="2.5" fill="none" /></svg>
+          <span id="fsLockText"></span>
+        </div>
+        <button class="arrow prev" id="fsPrev" aria-label="Previous fighter">
+          <svg viewBox="0 0 24 24"><path d="M15 4 L7 12 L15 20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <button class="arrow next" id="fsNext" aria-label="Next fighter">
+          <svg viewBox="0 0 24 24"><path d="M9 4 L17 12 L9 20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+      </div>
+
+      <section class="fs-side">
+        <div class="loadout-card">
+          <div class="fs-label">LOADOUT</div>
+          <div class="loadout-row"><div class="lo-icon" id="fsCostumeIcon"></div><div><small>COSTUME</small><b id="fsCostume"></b></div></div>
+          <div class="loadout-row"><div class="lo-icon" id="fsWeaponIcon"></div><div><small>WEAPON</small><b id="fsWeapon"></b></div></div>
+          <button class="ghost-btn" id="fsCustomize">CUSTOMIZE IN LOCKER</button>
+        </div>
+        <button class="primary-btn" id="fsSelect">SELECT</button>
+      </section>
+
+      <div class="carousel" id="fsCarousel"></div>
+    </div>
+  </div>
+
+  <div class="rotate-hint">
+    <svg viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="5" fill="none" stroke="currentColor" stroke-width="4" /><path d="M8 40 A26 26 0 0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" /></svg>
+    <p>Rotate your device to landscape</p>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/fighters.js"></script>
+</body>
+</html>

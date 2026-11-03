@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1012" />
+  <title>Locker · Stick Fighter Z</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rajdhani:wght@500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="stage">
+    <!-- ============ LOCKER SCREEN ============ -->
+    <div class="overlay screen open" id="lockerScreen">
+      <header class="screen-head">
+        <button class="back" data-back aria-label="Back">
+          <svg viewBox="0 0 24 24"><path d="M15 4 L7 12 L15 20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <h2>LOCKER</h2>
+        <div class="screen-sub" id="lkFighter"></div>
+        <div class="wallet">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#c8901e" /><circle cx="20" cy="20" r="13" fill="#f2c040" /></svg>
+          <span class="js-coins"></span>
+          <svg viewBox="0 0 40 40"><path d="M20 2 L34 16 L20 38 L6 16 Z" fill="#2a7fe0" /><path d="M20 2 L28 16 L20 38 Z" fill="#7cc8ff" /></svg>
+          <span class="js-gems"></span>
+        </div>
+      </header>
+
+      <div class="lk-stage">
+        <div class="spot"></div>
+        <div class="showcase-hero" id="lkHero"></div>
+        <div class="stats" id="lkStats"></div>
+      </div>
+
+      <section class="lk-panel">
+        <nav class="lk-tabs">
+          <button class="active" data-tab="costumes">COSTUMES</button>
+          <button data-tab="weapons">WEAPONS</button>
+        </nav>
+        <div class="lk-grid" id="lkGrid"></div>
+        <div class="lk-detail">
+          <div class="lk-text">
+            <div class="lk-rarity" id="lkRarity"></div>
+            <div class="lk-name" id="lkName"></div>
+            <p class="lk-desc" id="lkDesc"></p>
+            <div class="lk-bonus" id="lkBonus"></div>
+          </div>
+          <button class="primary-btn" id="lkAction"></button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="rotate-hint">
+    <svg viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="5" fill="none" stroke="currentColor" stroke-width="4" /><path d="M8 40 A26 26 0 0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" /></svg>
+    <p>Rotate your device to landscape</p>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/locker.js"></script>
+</body>
+</html>

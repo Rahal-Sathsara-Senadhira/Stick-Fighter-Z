@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1012" />
+  <title>Stick Fighter Z</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rajdhani:wght@500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>try { if (sessionStorage.getItem("sfz-session")) document.documentElement.classList.add("returning"); } catch {}</script>
+</head>
+<body>
+  <div id="stage">
+
+    <!-- ============ BACKGROUND SCENE ============ -->
+    <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3b2840" />
+          <stop offset="0.25" stop-color="#8a4a52" />
+          <stop offset="0.45" stop-color="#e48a5a" />
+          <stop offset="0.6" stop-color="#ffc77e" />
+          <stop offset="1" stop-color="#ffe2a8" />
+        </linearGradient>
+        <radialGradient id="sunGlow">
+          <stop offset="0" stop-color="#fff3c8" stop-opacity="1" />
+          <stop offset="0.25" stop-color="#ffd890" stop-opacity="0.8" />
+          <stop offset="1" stop-color="#ffb070" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e2c09a" />
+          <stop offset="0.35" stop-color="#b08870" />
+          <stop offset="1" stop-color="#3e2a26" />
+        </linearGradient>
+        <linearGradient id="vignetteBottom" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0c0708" stop-opacity="0" />
+          <stop offset="1" stop-color="#0c0708" stop-opacity="0.85" />
+        </linearGradient>
+        <linearGradient id="fireGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#ff5a1a" />
+          <stop offset="0.6" stop-color="#ffb030" />
+          <stop offset="1" stop-color="#fff0a0" />
+        </linearGradient>
+        <filter id="blur14"><feGaussianBlur stdDeviation="14" /></filter>
+      </defs>
+
+      <rect width="1600" height="900" fill="url(#sky)" />
+
+      <!-- Sun + clouds (farthest) -->
+      <g data-depth="0.15">
+        <circle cx="840" cy="300" r="260" fill="url(#sunGlow)" />
+        <circle cx="840" cy="300" r="40" fill="#fff1c4" />
+        <g class="clouds">
+          <g fill="#5a3a52" opacity="0.75">
+            <ellipse cx="300" cy="60" rx="360" ry="50" />
+            <ellipse cx="900" cy="40" rx="380" ry="45" />
+            <ellipse cx="1400" cy="80" rx="340" ry="55" />
+          </g>
+          <g fill="#f29a6a" opacity="0.7">
+            <ellipse cx="420" cy="150" rx="260" ry="34" />
+            <ellipse cx="760" cy="120" rx="220" ry="26" />
+            <ellipse cx="1080" cy="170" rx="280" ry="32" />
+            <ellipse cx="200" cy="230" rx="180" ry="20" />
+          </g>
+          <g fill="#ffd2a0" opacity="0.6">
+            <ellipse cx="620" cy="220" rx="200" ry="16" />
+            <ellipse cx="1000" cy="240" rx="240" ry="14" />
+            <ellipse cx="1260" cy="210" rx="150" ry="12" />
+          </g>
+        </g>
+      </g>
+
+      <!-- Far mesas -->
+      <g data-depth="0.3">
+        <path fill="#b07884" opacity="0.75"
+          d="M-60 470 L-60 340 L40 330 L60 350 L90 310 L120 320 L150 370 L210 385 L240 350 L270 360 L310 430
+             L520 440 L540 300 L570 290 L590 310 L620 300 L650 330 L690 430 L760 420 L790 350 L830 340
+             L860 370 L900 430 L1010 410 L1060 320 L1110 310 L1150 350 L1180 430 L1660 450 L1660 900 L-60 900 Z" />
+      </g>
+
+      <!-- Mid mesas + pagodas + mist -->
+      <g data-depth="0.5">
+        <g fill="#7a4250">
+          <path d="M300 560 L320 380 L350 370 L360 330 L400 320 L420 350 L440 360 L460 560 Z" />
+          <path d="M520 560 L540 330 L560 320 L570 270 L640 260 L660 300 L680 310 L700 560 Z" />
+          <path d="M1040 560 L1060 380 L1080 360 L1150 355 L1170 390 L1190 560 Z" />
+          <path d="M585 270 L595 230 L575 230 L605 210 L600 196 L630 196 L625 210 L655 230 L635 230 L645 270 Z" />
+          <path d="M1090 360 L1095 330 L1080 330 L1110 312 L1140 330 L1125 330 L1130 360 Z" />
+          <rect x="640" y="300" width="8" height="90" fill="#9b1c22" />
+          <rect x="660" y="300" width="8" height="70" fill="#9b1c22" />
+          <rect x="390" y="350" width="7" height="70" fill="#9b1c22" />
+        </g>
+        <g fill="#fff4e4" opacity="0.45" filter="url(#blur14)">
+          <ellipse cx="500" cy="540" rx="320" ry="40" />
+          <ellipse cx="1000" cy="520" rx="360" ry="36" />
+          <ellipse cx="200" cy="560" rx="200" ry="30" />
+        </g>
+      </g>
+
+      <!-- Left near cliffs -->
+      <path fill="#3a2228" d="M0 0 L60 0 L90 80 L120 120 L150 230 L190 300 L210 420 L260 470 L300 600 L320 900 L0 900 Z" />
+      <path fill="#4e2e32" d="M0 120 L40 140 L80 230 L110 330 L140 420 L170 520 L0 560 Z" opacity="0.7" />
+      <g fill="#b0262a" opacity="0.9">
+        <circle cx="70" cy="40" r="26" /><circle cx="100" cy="60" r="20" /><circle cx="40" cy="70" r="22" />
+        <circle cx="150" cy="250" r="16" /><circle cx="170" cy="240" r="12" />
+      </g>
+
+      <!-- Railing -->
+      <g fill="#3a2622">
+        <rect x="250" y="590" width="760" height="8" />
+        <rect x="250" y="620" width="760" height="6" />
+        <rect x="270" y="570" width="12" height="80" />
+        <rect x="380" y="575" width="12" height="75" />
+        <rect x="490" y="578" width="12" height="72" />
+        <rect x="600" y="580" width="12" height="70" />
+        <rect x="710" y="582" width="12" height="68" />
+        <rect x="820" y="584" width="12" height="66" />
+        <rect x="930" y="586" width="12" height="64" />
+      </g>
+
+      <!-- Temple -->
+      <g class="temple">
+        <path fill="#1c0f0c" d="M1140 0 L1600 0 L1600 150 L1180 150 L1140 120 Z" />
+        <path fill="#2e1812" d="M1130 110 Q1300 150 1600 130 L1600 165 Q1320 180 1140 140 Z" />
+        <rect x="1180" y="160" width="420" height="16" fill="#241310" />
+        <rect x="1440" y="180" width="130" height="130" fill="#e8d6b4" />
+        <g stroke="#6a4a3a" stroke-width="3">
+          <line x1="1483" y1="180" x2="1483" y2="310" /><line x1="1527" y1="180" x2="1527" y2="310" />
+          <line x1="1440" y1="225" x2="1570" y2="225" /><line x1="1440" y1="268" x2="1570" y2="268" />
+        </g>
+        <g fill="#2a1612">
+          <rect x="1290" y="170" width="28" height="470" />
+          <rect x="1420" y="170" width="24" height="420" />
+          <rect x="1572" y="170" width="28" height="470" />
+        </g>
+        <g class="banner">
+          <path fill="#a81e22" d="M1205 175 L1260 175 L1260 450 L1250 430 L1240 460 L1228 430 L1215 455 L1205 435 Z" />
+        </g>
+        <g class="banner banner-2">
+          <path fill="#b8242a" d="M1330 175 L1410 175 L1410 420 L1398 400 L1385 430 L1370 395 L1355 425 L1342 400 L1330 415 Z" />
+          <text x="1370" y="300" font-family="serif" font-size="70" text-anchor="middle" fill="#5a0c10" opacity="0.85">武</text>
+        </g>
+        <path fill="#a81e22" d="M1585 90 L1600 90 L1600 400 L1585 380 Z" />
+        <g class="lantern">
+          <rect x="1490" y="325" width="40" height="70" rx="6" fill="#ffcf7a" />
+          <rect x="1486" y="318" width="48" height="10" fill="#2a1612" />
+          <rect x="1486" y="392" width="48" height="10" fill="#2a1612" />
+          <circle cx="1510" cy="360" r="70" fill="#ffc060" opacity="0.25" filter="url(#blur14)" />
+        </g>
+        <path d="M1300 520 Q1310 480 1290 450" stroke="#2a1612" stroke-width="6" fill="none" />
+        <g fill="#c0282c">
+          <circle cx="1280" cy="445" r="22" /><circle cx="1310" cy="440" r="18" />
+          <circle cx="1296" cy="425" r="16" /><circle cx="1325" cy="460" r="14" />
+        </g>
+        <rect x="1240" y="540" width="360" height="30" fill="#8a766a" />
+        <rect x="1220" y="570" width="380" height="30" fill="#a08a7c" />
+        <rect x="1200" y="600" width="400" height="34" fill="#b49c8c" />
+        <rect x="1180" y="634" width="420" height="30" fill="#c4ac98" />
+        <g class="brazier">
+          <ellipse cx="1510" cy="560" rx="70" ry="16" fill="#1a0e0c" />
+          <path d="M1440 560 Q1450 600 1510 604 Q1570 600 1580 560 Z" fill="#2a1a16" />
+          <rect x="1495" y="600" width="30" height="40" fill="#2a1a16" />
+          <g class="flame">
+            <path fill="url(#fireGrad)" d="M1460 560 Q1470 510 1490 520 Q1495 470 1515 490 Q1530 450 1540 500 Q1560 495 1560 560 Z" />
+            <path fill="#fff4b0" opacity="0.8" d="M1490 560 Q1500 525 1512 530 Q1520 505 1528 535 Q1540 535 1535 560 Z" />
+          </g>
+          <circle class="fire-glow" cx="1510" cy="520" r="90" fill="#ff9a40" opacity="0.25" filter="url(#blur14)" />
+        </g>
+      </g>
+
+      <!-- Floor -->
+      <path fill="url(#floor)" d="M0 650 Q800 630 1600 660 L1600 900 L0 900 Z" />
+      <g stroke="#5a4038" stroke-opacity="0.35" stroke-width="2" fill="none">
+        <path d="M0 720 Q800 700 1600 730" />
+        <path d="M0 800 Q800 780 1600 810" />
+        <line x1="400" y1="650" x2="200" y2="900" />
+        <line x1="700" y1="645" x2="620" y2="900" />
+        <line x1="1000" y1="645" x2="1060" y2="900" />
+        <line x1="1300" y1="655" x2="1480" y2="900" />
+      </g>
+      <g class="sigil" stroke="#f6e2c0" fill="none" stroke-width="3">
+        <ellipse cx="1000" cy="770" rx="420" ry="80" />
+        <ellipse cx="1000" cy="770" rx="330" ry="60" stroke-dasharray="18 12" />
+        <ellipse cx="1000" cy="770" rx="180" ry="32" />
+      </g>
+
+      <path fill="#1e1214" d="M0 700 L80 690 L160 720 L240 760 L300 830 L320 900 L0 900 Z" />
+      <path fill="#1e1214" d="M1500 780 L1560 760 L1600 770 L1600 900 L1460 900 Z" />
+      <rect y="600" width="1600" height="300" fill="url(#vignetteBottom)" />
+    </svg>
+
+    <!-- ============ HERO FIGHTER ============ -->
+    <div class="hero-wrap" id="heroWrap" data-depth="-0.4"></div>
+
+    <!-- Particles: leaves, embers, dust, sparks -->
+    <canvas id="fx" width="1600" height="900" aria-hidden="true"></canvas>
+
+    <!-- ============ MENU UI ============ -->
+    <div class="profile brush-dark ui" data-enter="top" style="--d:.05s">
+      <div class="avatar" id="profileAvatar"></div>
+      <div class="profile-info">
+        <div class="level">LV. <b>8</b></div>
+        <div class="xp"><span id="xpBar"></span></div>
+        <div class="label">FIGHTER MASTERY · <span id="xpText">0</span> / 1000 XP</div>
+      </div>
+    </div>
+
+    <h1 class="logo ui" data-enter="top"><span>Stick Fighter</span><em>Z</em></h1>
+
+    <div class="topbar ui" data-enter="top" style="--d:.1s">
+      <div class="currency">
+        <svg class="coin" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#c8901e" /><circle cx="20" cy="20" r="14" fill="#f2c040" /><circle cx="20" cy="20" r="9" fill="none" stroke="#a87010" stroke-width="3" /><path d="M14 12 Q20 8 26 12" stroke="#fff3c0" stroke-width="2" fill="none" /></svg>
+        <span class="amount" id="coins">0</span>
+      </div>
+      <div class="divider"></div>
+      <div class="currency">
+        <svg class="gem" viewBox="0 0 40 40"><path d="M20 2 L34 16 L20 38 L6 16 Z" fill="#2a7fe0" /><path d="M20 2 L28 16 L20 38 Z" fill="#7cc8ff" /><path d="M6 16 L34 16 L20 2 Z" fill="#a8e0ff" opacity="0.6" /></svg>
+        <span class="amount" id="gems">0</span>
+      </div>
+      <button class="settings" id="settingsBtn" aria-label="Settings">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3h-4l-.3 2.9a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1c.5.4 1.1.7 1.7 1L11 21h4l.3-2.9c.6-.3 1.2-.6 1.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1 1 13 8.5a3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)" /></svg>
+      </button>
+    </div>
+
+    <!-- Mode card -->
+    <section class="card ui" data-enter="left" style="--d:.15s">
+      <div class="card-inner" id="cardInner">
+        <div class="eyebrow" id="cardEyebrow"></div>
+        <h2 id="cardTitle"></h2>
+        <div class="subtitle" id="cardSubtitle"></div>
+        <div class="card-art" id="cardArt">
+          <svg viewBox="0 0 480 170" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="miniSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#6a3a4a" /><stop offset="0.5" stop-color="#e88a5a" /><stop offset="1" stop-color="#ffd9a0" />
+              </linearGradient>
+            </defs>
+            <rect width="480" height="170" fill="url(#miniSky)" />
+            <circle cx="330" cy="70" r="16" fill="#fff0c0" />
+            <path fill="#9a6070" d="M0 120 L0 70 L30 60 L60 90 L120 95 L140 60 L170 55 L190 80 L260 100 L300 60 L340 70 L380 100 L480 90 L480 170 L0 170 Z" />
+            <path fill="#5a2a34" d="M0 170 L0 50 L40 40 L60 20 L90 30 L110 70 L160 80 L180 120 L240 140 L480 150 L480 170 Z" />
+            <path fill="#6a3238" d="M180 140 L190 50 L210 40 L215 20 L240 15 L250 40 L270 50 L275 140 Z" />
+            <rect x="210" y="45" width="5" height="40" fill="#b0262a" /><rect x="225" y="45" width="5" height="34" fill="#b0262a" />
+            <rect x="140" y="80" width="5" height="45" fill="#b0262a" /><rect x="155" y="78" width="5" height="40" fill="#b0262a" />
+            <rect x="370" y="60" width="40" height="80" fill="#4a2228" /><path d="M362 62 L390 40 L418 62 Z" fill="#3a1a20" />
+            <ellipse cx="300" cy="150" rx="200" ry="18" fill="#fff4e4" opacity="0.5" />
+            <g fill="#2a1418"><rect x="60" y="130" width="250" height="5" /><rect x="70" y="120" width="5" height="25" /><rect x="130" y="122" width="5" height="25" /><rect x="190" y="124" width="5" height="25" /><rect x="250" y="126" width="5" height="25" /></g>
+          </svg>
+          <div class="art-shine"></div>
+        </div>
+        <div class="stars-row">
+          <div class="stars" id="stars"></div>
+          <div class="stars-label" id="starsLabel"></div>
+          <div class="reward">
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#c8901e" /><circle cx="20" cy="20" r="13" fill="#f2c040" /></svg>
+            <span id="reward"></span>
+          </div>
+        </div>
+        <div class="challenge">
+          <div class="challenge-icon">
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#e8dccb" stroke-width="2" /><circle cx="24" cy="10" r="3" fill="#e8dccb" /><path d="M23 14 L18 22 L24 26 L20 33 M18 22 L11 24 M21 17 L28 20 M8 30 L32 10" stroke="#e8dccb" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+          </div>
+          <div class="challenge-body">
+            <div class="challenge-text" id="challengeText"></div>
+            <div class="progress"><span id="challengeBar"></span></div>
+          </div>
+          <div class="challenge-count" id="challengeCount"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mode tabs -->
+    <nav class="modes ui" data-enter="left" style="--d:.22s" role="tablist">
+      <div class="mode-indicator" id="modeIndicator"></div>
+      <button class="mode active" data-mode="story" role="tab">
+        <svg viewBox="0 0 48 32"><path d="M2 30 L18 8 L26 18 L32 12 L46 30 Z" fill="currentColor" /></svg>
+        <span>STORY</span>
+      </button>
+      <button class="mode" data-mode="versus" role="tab">
+        <svg viewBox="0 0 40 40"><path d="M6 6 L26 26 M34 6 L14 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" /><path d="M22 30 L30 22 M18 30 L10 22 M28 32 L34 38 M12 32 L6 38" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+        <span>VERSUS</span>
+      </button>
+      <button class="mode" data-mode="training" role="tab">
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="3" /><circle cx="20" cy="20" r="4" fill="currentColor" /><path d="M20 2 L20 10 M20 30 L20 38" stroke="currentColor" stroke-width="3" /></svg>
+        <span>TRAINING</span>
+      </button>
+    </nav>
+
+    <!-- Fighter stats -->
+    <section class="fighter-panel ui" data-enter="left" style="--d:.3s">
+      <div class="fp-head">
+        <div>
+          <div class="fp-name" id="fpName"></div>
+          <div class="fp-title" id="fpTitle"></div>
+        </div>
+        <div class="fp-style" id="fpStyle"></div>
+      </div>
+      <div class="stats" id="fpStats"></div>
+      <div class="fp-special">
+        <div>SPECIAL <b id="fpSpecial"></b></div>
+        <div>WEAPON <b id="fpWeapon"></b></div>
+      </div>
+    </section>
+
+    <!-- Fighters / Locker -->
+    <div class="menu-buttons ui" data-enter="bottom" style="--d:.35s">
+      <button class="menu-btn" id="openFighters">
+        <div class="mb-icon mb-face" id="mbFace"></div>
+        <div class="mb-label">FIGHTERS</div>
+        <div class="mb-sub" id="mbFighter"></div>
+      </button>
+      <button class="menu-btn" id="openLocker">
+        <div class="mb-icon" id="mbWeapon"></div>
+        <div class="mb-label">LOCKER</div>
+        <div class="mb-sub" id="mbItem"></div>
+      </button>
+    </div>
+
+    <!-- Continue -->
+    <div class="continue-wrap ui" data-enter="right" style="--d:.4s">
+      <div class="continue-label" id="continueLabel"></div>
+      <button class="continue" id="continueBtn">
+        <span>CONTINUE</span>
+        <svg viewBox="0 0 24 40"><path d="M4 4 L20 20 L4 36" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="square" /></svg>
+      </button>
+    </div>
+
+    <!-- ============ SPLASH ============ -->
+    <div class="overlay splash open" id="splash">
+      <div class="splash-logo"><span>Stick Fighter</span><em>Z</em></div>
+      <div class="splash-tag">FORGE YOUR LEGEND</div>
+      <div class="tap">TAP TO START</div>
+      <div class="version">PROTOTYPE v0.3</div>
+    </div>
+
+    <!-- ============ SETTINGS ============ -->
+    <div class="overlay modal" id="settings">
+      <div class="panel">
+        <header>
+          <h3>SETTINGS</h3>
+          <button class="close" data-close aria-label="Close">
+            <svg viewBox="0 0 24 24"><path d="M5 5 L19 19 M19 5 L5 19" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+          </button>
+        </header>
+        <div class="row"><span>Music</span><button class="switch" data-setting="music" role="switch"></button></div>
+        <div class="row"><span>Sound Effects</span><button class="switch" data-setting="sfx" role="switch"></button></div>
+        <div class="row"><span>Vibration</span><button class="switch" data-setting="vibration" role="switch"></button></div>
+        <div class="row"><span>Effects Quality</span>
+          <div class="seg" data-setting="quality">
+            <button data-value="low">LOW</button><button data-value="high">HIGH</button>
+          </div>
+        </div>
+        <footer>Stick Fighter Z · Prototype v0.3</footer>
+      </div>
+    </div>
+
+    <!-- ============ VS SCREEN ============ -->
+    <div class="overlay vs" id="vs">
+      <div class="vs-side vs-left">
+        <div class="vs-face" id="vsPlayer"></div>
+        <div class="vs-name" id="vsPlayerName"></div>
+        <div class="vs-sub" id="vsPlayerSub"></div>
+      </div>
+      <div class="vs-side vs-right">
+        <div class="vs-face" id="vsEnemy"></div>
+        <div class="vs-name" id="vsEnemyName"></div>
+        <div class="vs-sub" id="vsEnemySub"></div>
+      </div>
+      <div class="vs-mark">VS</div>
+      <div class="vs-bottom">
+        <div class="vs-stage" id="vsStage"></div>
+        <div class="vs-bar"><span id="vsBar"></span></div>
+        <div class="vs-tip" id="vsTip"></div>
+        <button class="vs-back" id="vsBack">BACK TO MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rotate-hint">
+    <svg viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="5" fill="none" stroke="currentColor" stroke-width="4" /><path d="M8 40 A26 26 0 0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" /></svg>
+    <p>Rotate your device to landscape</p>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
